@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>مطور ويب  — 0557771329</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a84c;--gold-light:#f5e6c8;--gold-dark:#8b6914;
+  --navy:#0f172a;--navy2:#1e3a5f;
+  --blue:#1a56db;--blue-light:#eff6ff;
+  --green:#059669;--green-light:#ecfdf5;
+  --ink:#0f172a;--muted:#64748b;
+  --border:#e2e8f0;--bg:#f8fafc;--white:#ffffff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6}
+
+/* NAV */
+nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:999;border-bottom:2px solid var(--gold)}
+.logo{display:flex;align-items:center;gap:10px;padding:14px 0;text-decoration:none}
+.logo-mark{width:38px;height:38px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:700;font-size:14px;flex-shrink:0}
+.logo-text{color:#fff;font-size:15px;font-weight:700;line-height:1.2}
+.logo-text span{color:var(--gold);font-size:11px;font-weight:400;display:block}
+.nav-links{display:flex;list-style:none;gap:2px}
+.nav-links a{color:#94a3b8;text-decoration:none;font-size:13px;padding:14px 11px;display:block;transition:color .15s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--navy);border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#b8943e}
+
+/* HERO */
+.hero{background:var(--navy);padding:4rem 2rem 3.5rem;color:#fff;text-align:center;position:relative;overflow:hidden}
+.hero-top-line{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%)}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:5px 16px;border-radius:999px;font-size:12px;margin-bottom:1.5rem}
+.hero h1{font-size:2.2rem;font-weight:800;line-height:1.25;margin-bottom:.75rem}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:14px;color:#94a3b8;max-width:500px;margin:0 auto 2rem;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.btn-gold{background:var(--gold);color:var(--navy);padding:12px 26px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:700;text-decoration:none;display:inline-block}
+.btn-gold:hover{background:#b8943e}
+.btn-ghost{background:transparent;color:#fff;padding:12px 26px;border-radius:8px;border:1px solid rgba(255,255,255,.25);cursor:pointer;font-size:14px;text-decoration:none;display:inline-block}
+.btn-ghost:hover{background:rgba(255,255,255,.07)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;max-width:600px;margin:0 auto}
+.stat-cell{padding:1.2rem .5rem;text-align:center;background:rgba(255,255,255,.04)}
+.stat-n{font-size:1.6rem;font-weight:800;color:var(--gold)}
+.stat-l{font-size:11px;color:#64748b;margin-top:3px}
+
+/* SECTION */
+.sec{padding:3.5rem 2rem}
+.sec-alt{background:#f1f5f9}
+.sec-head{text-align:center;margin-bottom:2.5rem}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:.4rem}
+.sec-head h2{font-size:1.6rem;font-weight:800;color:var(--ink)}
+.sec-head p{font-size:13.5px;color:var(--muted);margin-top:.4rem}
+.divider{height:1px;background:var(--border)}
+
+/* PRICE TAG */
+.price-tag-wrap{max-width:420px;margin:0 auto 1.5rem}
+.price-tag{background:var(--white);border:2px solid var(--gold);border-radius:18px;padding:2.25rem;text-align:center;position:relative}
+.price-tag::before{content:'⭐ عرض خاص';position:absolute;top:-14px;right:50%;transform:translateX(50%);background:var(--gold);color:var(--navy);font-size:12px;font-weight:700;padding:3px 18px;border-radius:999px;white-space:nowrap}
+.price-big{font-size:3.2rem;font-weight:900;color:var(--navy);line-height:1}
+.price-big sub{font-size:1.1rem;font-weight:500;color:var(--muted);vertical-align:middle}
+.price-note{font-size:13px;color:var(--muted);margin-top:.6rem;line-height:1.5}
+.price-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:1.25rem}
+.pp{background:var(--gold-light);color:var(--gold-dark);font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.1rem}
+.svc-card{background:var(--white);border:.5px solid var(--border);border-radius:14px;padding:1.4rem;transition:border-color .2s,transform .2s}
+.svc-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.svc-ico{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:22px}
+.ico-b{background:#eff6ff}.ico-p{background:#f5f3ff}.ico-g{background:var(--green-light)}.ico-o{background:var(--gold-light)}.ico-c{background:#f0f9ff}.ico-r{background:#fff1f2}
+.svc-card h3{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.svc-card ul{list-style:none;padding:0}
+.svc-card ul li{font-size:12.5px;color:var(--muted);padding:3px 0;display:flex;align-items:flex-start;gap:5px}
+.svc-card ul li::before{content:'';display:inline-block;width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:6px}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem}
+.pc{background:var(--white);border:.5px solid var(--border);border-radius:16px;padding:1.5rem;position:relative}
+.pc.star{border:2px solid var(--gold)}
+.pc-badge{position:absolute;top:-13px;right:50%;transform:translateX(50%);background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:3px 16px;border-radius:999px;white-space:nowrap}
+.pc-name{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
+.pc-price{font-size:1.9rem;font-weight:900;color:var(--ink)}
+.pc-price span{font-size:13px;font-weight:400;color:var(--muted)}
+.pc-desc{font-size:12px;color:var(--muted);line-height:1.5;margin:.5rem 0 1.1rem}
+.pc ul{list-style:none;padding:0;margin-bottom:1.25rem}
+.pc ul li{font-size:12.5px;color:var(--muted);padding:5px 0;border-bottom:.5px solid var(--border);display:flex;align-items:flex-start;gap:5px}
+.pc ul li:last-child{border-bottom:none}
+.pc ul li .ck{color:var(--green);font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px}
+.pc-btn{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--white);cursor:pointer;font-size:13px;font-weight:700;color:var(--blue);transition:background .15s}
+.pc-btn:hover{background:var(--blue-light)}
+.pc-btn.g{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.pc-btn.g:hover{background:#b8943e}
+
+/* DB */
+.db-wrap{background:var(--white);border:.5px solid var(--border);border-radius:16px;overflow:hidden}
+.db-top{background:var(--navy);padding:1.25rem 1.75rem;display:flex;align-items:center;justify-content:space-between}
+.db-top h3{color:#fff;font-size:15px;font-weight:700}
+.free-tag{background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
+.db-body{padding:1.5rem 1.75rem}
+.db-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem}
+.db-s{background:var(--bg);border-radius:10px;padding:1rem;text-align:center;border:.5px solid var(--border)}
+.db-s .n{font-size:1.4rem;font-weight:800;color:var(--blue)}
+.db-s .l{font-size:11px;color:var(--muted);margin-top:3px}
+.upgrade-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:1rem;font-size:13px;color:#1e3a8a;line-height:1.6}
+.domain-box{background:var(--navy);border-radius:14px;padding:1.5rem 1.75rem;margin-top:1.25rem;color:#fff}
+.domain-box h3{font-size:15px;font-weight:700;margin-bottom:.4rem}
+.domain-box p{font-size:13px;color:#94a3b8;line-height:1.6;margin-bottom:1rem}
+.domain-pills{display:flex;flex-wrap:wrap;gap:8px}
+.dp{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 14px;font-size:12.5px;color:#e2e8f0}
+
+/* MAINT */
+.maint{background:var(--navy);border:2px solid var(--gold);border-radius:18px;padding:2.25rem;text-align:center;color:#fff}
+.maint h3{font-size:1.4rem;font-weight:800;margin-bottom:.5rem}
+.maint p{font-size:13.5px;color:#94a3b8;line-height:1.7;max-width:460px;margin:0 auto}
+.maint-badge{display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#fff;font-size:13px;font-weight:700;padding:9px 22px;border-radius:999px;margin-top:1.1rem}
+.maint-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.75rem}
+.ms{background:rgba(255,255,255,.07);border-radius:12px;padding:1.25rem;font-size:13px;color:#cbd5e1;text-align:center;line-height:1.5}
+.ms-ico{font-size:26px;margin-bottom:.5rem}
+
+/* CONTACT */
+.contact-card{background:var(--gold);border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.25rem}
+.contact-card h3{font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:.3rem}
+.contact-card p{font-size:13px;color:var(--navy);opacity:.7}
+.phone-big{font-size:2rem;font-weight:900;color:var(--navy);letter-spacing:.03em;margin:.75rem 0 1.1rem;direction:ltr;display:block}
+.c-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.cb{padding:11px 24px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.cb-wa{background:#25d366;color:#fff}
+.cb-wa:hover{background:#1ebe5d}
+.cb-call{background:var(--navy);color:#fff}
+.cb-call:hover{background:var(--navy2)}
+.cg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.cg{background:var(--white);border:.5px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+.cg-ico{font-size:26px;margin-bottom:.5rem}
+.cg h4{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:.25rem}
+.cg p{font-size:12px;color:var(--muted)}
+
+/* CONTRACT */
+.contract{background:var(--white);border:.5px solid var(--border);border-radius:16px;overflow:hidden}
+.ct-head{background:var(--navy);padding:1.25rem 1.75rem;display:flex;align-items:center;justify-content:space-between}
+.ct-head h3{color:#fff;font-size:15px;font-weight:700}
+.ct-seal{background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:4px 12px;border-radius:5px}
+.ct-body{padding:1.5rem 1.75rem}
+.ct-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--border);font-size:13.5px}
+.ct-row:last-of-type{border-bottom:none;margin-bottom:1rem}
+.ct-lbl{color:var(--muted);font-weight:500}
+.ct-val{font-weight:700;color:var(--ink)}
+.ct-val.gold{color:var(--gold-dark);font-size:1rem}
+.ct-form{display:flex;flex-direction:column;gap:.75rem}
+.ct-input{width:100%;padding:10px 14px;border:.5px solid var(--border);border-radius:8px;font-size:13.5px;direction:rtl;color:var(--ink);background:var(--bg);outline:none;transition:border-color .15s;font-family:inherit}
+.ct-input:focus{border-color:var(--gold)}
+.ct-submit{background:var(--navy);color:#fff;border:none;padding:13px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:background .15s;font-family:inherit}
+.ct-submit:hover{background:var(--navy2)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:1.75rem;text-align:center;border-top:2px solid var(--gold)}
+footer p{font-size:12.5px;color:#475569}
+footer span{color:var(--gold);font-weight:700}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  nav{padding:0 1rem}
+  .nav-links{display:none}
+  .hero{padding:2.5rem 1.25rem 2.5rem}
+  .hero h1{font-size:1.6rem}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .sec{padding:2.5rem 1.25rem}
+  .db-stats{grid-template-columns:repeat(2,1fr)}
+  .maint-steps{grid-template-columns:1fr}
+  .ct-row{flex-direction:column;align-items:flex-start;gap:3px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-mark">&lt;/&gt;</div>
+    <div class="logo-text">مطور ويب<span>خدمات مواقع احترافية</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">خدماتي</a></li>
+    <li><a href="#pricing">الأسعار</a></li>
+    <li><a href="#hosting">الاستضافة</a></li>
+    <li><a href="#maintenance">الصيانة</a></li>
+    <li><a href="#contact">التواصل</a></li>
+  </ul>
+  <a class="nav-cta" href="#quote">طلب عرض سعر</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top-line"></div>
+  <div class="hero-pill">🚀 مطور مواقع ويب </div>
+  
+  <p class="hero-sub">أصمّم وأطوّر مواقع ويب متكاملة — من الفكرة إلى الإطلاق — باستضافة مجانية وقاعدة بيانات ضخمة وصيانة 3 أشهر مجانية</p>
+  <div class="hero-btns">
+    <a class="btn-gold" href="#quote">📄 احصل على عرض سعر</a>
+    <a class="btn-ghost" href="https://wa.me/966557771329" target="_blank">💬 تواصل مباشر</a>
+  </div>
+  <div class="stats-row">
+    <div class="stat-cell"><div class="stat-n">50K</div><div class="stat-l">مستخدم / شهر</div></div>
+    <div class="stat-cell"><div class="stat-n">500MB</div><div class="stat-l">قاعدة بيانات</div></div>
+    <div class="stat-cell"><div class="stat-n">3</div><div class="stat-l">أشهر صيانة مجانية</div></div>
+    <div class="stat-cell"><div class="stat-n">∞</div><div class="stat-l">طلبات API</div></div>
+  </div>
+</section>
+
+<!-- SPECIAL PRICE -->
+<section class="sec" style="background:var(--bg)">
+  <div class="sec-head">
+    <div class="eyebrow">سعر المشروع</div>
+    <h2>عرض خاص وحصري</h2>
+    <p>موقع متكامل بجميع المميزات — سعر شامل بدون رسوم خفية</p>
+  </div>
+  <div class="price-tag-wrap">
+    <div class="price-tag">
+      <div class="price-big">1,200 <sub>ريال</sub></div>
+      <div class="price-note">موقع كامل + استضافة + قاعدة بيانات + 3 أشهر صيانة</div>
+      <div class="price-pills">
+        <span class="pp">✓ تصميم احترافي</span>
+        <span class="pp">✓ استضافة مجانية</span>
+        <span class="pp">✓ قاعدة بيانات</span>
+        <span class="pp">✓ لوحة تحكم</span>
+        <span class="pp">✓ 3 أشهر صيانة</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">ما أقدمه</div>
+    <h2>خدمات متكاملة من الألف إلى الياء</h2>
+    <p>كل ما يحتاجه موقعك في مكان واحد</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-ico ico-b">🖥️</div>
+      <h3>تصميم وتطوير</h3>
+      <ul>
+        <li>واجهة عصرية متجاوبة</li>
+        <li>صفحة رئيسية + منيو كامل</li>
+        <li>سلة تسوق وإتمام الطلب</li>
+        <li>نظام حجوزات متكامل</li>
+        <li>نظام تقييمات وردود</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico ico-p">📊</div>
+      <h3>لوحة تحكم مدير</h3>
+      <ul>
+        <li>إدارة الأصناف والمنتجات</li>
+        <li>إدارة المستخدمين</li>
+        <li>إدارة الحجوزات</li>
+        <li>إدارة التقييمات</li>
+        <li>إحصائيات وتقارير</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico ico-g">🗄️</div>
+      <h3>الاستضافة والبيانات</h3>
+      <ul>
+        <li>استضافة مجانية كاملة</li>
+        <li>قاعدة بيانات 500MB</li>
+        <li>50,000 مستخدم / شهر</li>
+        <li>5GB بيانات صادرة</li>
+        <li>1GB تخزين ملفات</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico ico-o">🔧</div>
+      <h3>الصيانة والدعم</h3>
+      <ul>
+        <li>3 أشهر صيانة مجانية</li>
+        <li>إصلاح الأخطاء فوراً</li>
+        <li>تحديثات المحتوى</li>
+        <li>نسخ احتياطية منتظمة</li>
+        <li>دعم فني مستمر</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico ico-c">📱</div>
+      <h3>تجربة المستخدم</h3>
+      <ul>
+        <li>تصميم متجاوب جوال / كمبيوتر</li>
+        <li>سرعة تحميل عالية</li>
+        <li>واجهة سهلة الاستخدام</li>
+        <li>نموذج تواصل وعروض</li>
+        <li>اتصل بنا متكامل</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico ico-r">📋</div>
+      <h3>عقود وعروض أسعار</h3>
+      <ul>
+        <li>عقد رقمي احترافي</li>
+        <li>عرض سعر مفصّل</li>
+        <li>توثيق المتطلبات</li>
+        <li>جدول زمني للتسليم</li>
+        <li>ضمان الجودة</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section class="sec sec-alt" id="pricing">
+  <div class="sec-head">
+    <div class="eyebrow">الخطط والأسعار</div>
+    <h2>شفافية تامة — بدون رسوم خفية</h2>
+    <p>اختر الخطة المناسبة لمشروعك</p>
+  </div>
+  <div class="price-grid">
+    <div class="pc">
+      <div class="pc-name">الخطة الأساسية</div>
+      <div class="pc-price">1,200 <span>ريال</span></div>
+      <div class="pc-desc">موقع كامل + استضافة مجانية + 3 أشهر صيانة</div>
+      <ul>
+        <li><span class="ck">✓</span>تصميم احترافي متجاوب</li>
+        <li><span class="ck">✓</span>استضافة مجانية كاملة</li>
+        <li><span class="ck">✓</span>قاعدة بيانات 500MB</li>
+        <li><span class="ck">✓</span>50K مستخدم / شهر</li>
+        <li><span class="ck">✓</span>منيو + سلة + طلبات</li>
+        <li><span class="ck">✓</span>لوحة تحكم مدير</li>
+        <li><span class="ck">✓</span>3 أشهر صيانة مجانية</li>
+      </ul>
+      <a class="pc-btn" href="#quote" style="display:block;text-align:center;text-decoration:none">طلب الآن</a>
+    </div>
+    <div class="pc star">
+      <div class="pc-badge">⭐ الأكثر طلباً</div>
+      <div class="pc-name">الخطة المتكاملة</div>
+      <div class="pc-price">1,200 <span>ريال</span></div>
+      <div class="pc-desc">جميع الميزات + نظام إدارة + حجوزات + تقييمات</div>
+      <ul>
+        <li><span class="ck">✓</span>كل ميزات الخطة الأساسية</li>
+        <li><span class="ck">✓</span>نظام حجوزات متكامل</li>
+        <li><span class="ck">✓</span>نظام تقييمات + ردود</li>
+        <li><span class="ck">✓</span>إدارة مستخدمين كاملة</li>
+        <li><span class="ck">✓</span>إدارة الأصناف</li>
+        <li><span class="ck">✓</span>نموذج اتصل بنا</li>
+        <li><span class="ck">✓</span>3 أشهر صيانة مجانية</li>
+      </ul>
+      <a class="pc-btn g" href="#quote" style="display:block;text-align:center;text-decoration:none">احجز الآن</a>
+    </div>
+    <div class="pc">
+      <div class="pc-name">ترقية الاستضافة</div>
+      <div class="pc-price">~$25 <span>/ شهر</span></div>
+      <div class="pc-desc">عند نمو مشروعك وزيادة الزوار والبيانات</div>
+      <ul>
+        <li><span class="ck">✓</span>100,000 مستخدم / شهر</li>
+        <li><span class="ck">✓</span>8GB قرص لكل مشروع</li>
+        <li><span class="ck">✓</span>250GB بيانات صادرة</li>
+        <li><span class="ck">✓</span>250GB بيانات مخزنة</li>
+        <li><span class="ck">✓</span>تخزين ملفات 100GB+</li>
+        <li><span class="ck">✓</span>$10 لكل مشروع إضافي</li>
+        <li><span class="ck">✓</span>ترقية بضغطة زر</li>
+      </ul>
+      <a class="pc-btn" href="https://wa.me/966557771329" target="_blank" style="display:block;text-align:center;text-decoration:none">استفسر الآن</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOSTING + DB -->
+<section class="sec" id="hosting">
+  <div class="sec-head">
+    <div class="eyebrow">البنية التقنية</div>
+    <h2>استضافة مجانية + دومين اختياري</h2>
+  </div>
+  <div class="db-wrap">
+    <div class="db-top">
+      <h3>🗄️ قاعدة البيانات المجانية</h3>
+      <span class="free-tag">✓ مجاني 100%</span>
+    </div>
+    <div class="db-body">
+      <div class="db-stats">
+        <div class="db-s"><div class="n">500MB</div><div class="l">قاعدة البيانات</div></div>
+        <div class="db-s"><div class="n">50K</div><div class="l">مستخدم / شهر</div></div>
+        <div class="db-s"><div class="n">5GB</div><div class="l">بيانات صادرة</div></div>
+        <div class="db-s"><div class="n">1GB</div><div class="l">تخزين ملفات</div></div>
+      </div>
+      <div class="upgrade-box">
+        💡 عند نمو مشروعك، يمكن الترقية بسهولة من <strong>$25 / شهر</strong> فقط — مضاعفة السعة فوراً بدون أي توقف للموقع.
+      </div>
+    </div>
+  </div>
+  <div class="domain-box">
+    <h3>🌐 الدومين (اسم النطاق)</h3>
+    <p>الاستضافة مجانية كلياً — الدومين اختياري حسب رغبة العميل، والدفع سنوي مرن.</p>
+    <div class="domain-pills">
+      <div class="dp">✅ استضافة مجانية</div>
+      <div class="dp">🌐 دومين من $10 / سنة وما فوق</div>
+      <div class="dp">📅 دفع سنوي مرن</div>
+      <div class="dp">🔗 متعدد الامتدادات (.com .net .sa)</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MAINTENANCE -->
+<section class="sec sec-alt" id="maintenance">
+  <div class="sec-head">
+    <div class="eyebrow">ما بعد التسليم</div>
+    <h2>ضمان الصيانة المجانية</h2>
+  </div>
+  <div class="maint">
+    <h3>🛡️ 3 أشهر صيانة مجانية مع كل مشروع</h3>
+    <p>بعد تسليم موقعك، أستمر معك ثلاثة أشهر لضمان عمل كل شيء بكفاءة واحترافية تامة بدون أي تكاليف إضافية.</p>
+    <div class="maint-badge">✓ مجاني — بدون أي تكاليف إضافية</div>
+    <div class="maint-steps">
+      <div class="ms"><div class="ms-ico">🐛</div>إصلاح الأخطاء التقنية فوراً</div>
+      <div class="ms"><div class="ms-ico">🔄</div>تحديثات المحتوى والتعديلات</div>
+      <div class="ms"><div class="ms-ico">🎧</div>دعم فني على مدار الأسبوع</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="sec-head">
+    <div class="eyebrow">تواصل معي</div>
+    <h2>جاهز لبدء مشروعك؟</h2>
+    <p>تواصل الآن وسأرد عليك خلال ساعات</p>
+  </div>
+  <div style="max-width:480px;margin:0 auto">
+    <div class="contact-card">
+      <h3>للتواصل المباشر — واتساب أو اتصال</h3>
+      <p>متاح للرد على استفساراتك ومناقشة مشروعك</p>
+      <span class="phone-big">0557771329</span>
+      <div class="c-btns">
+        <a class="cb cb-wa" href="https://wa.me/966557771329" target="_blank">💬 واتساب</a>
+        <a class="cb cb-call" href="tel:+966557771329">📞 اتصال مباشر</a>
+      </div>
+    </div>
+  </div>
+  <div class="cg-grid" style="max-width:640px;margin:0 auto">
+    <div class="cg"><div class="cg-ico">💬</div><h4>واتساب</h4><p>تواصل سريع ومباشر</p></div>
+    <div class="cg"><div class="cg-ico">📞</div><h4>اتصال</h4><p>0557771329</p></div>
+    <div class="cg"><div class="cg-ico">⏰</div><h4>وقت الرد</h4><p>خلال ساعات</p></div>
+    <div class="cg"><div class="cg-ico">🇸🇦</div><h4>الخدمة</h4><p>جميع مناطق المملكة</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- QUOTE CONTRACT -->
+<section class="sec sec-alt" id="quote">
+  <div class="sec-head">
+    <div class="eyebrow">ابدأ الآن</div>
+    <h2>عقد طلب عرض سعر رسمي</h2>
+    <p>أملأ بياناتك وسأتواصل معك لمناقشة تفاصيل مشروعك</p>
+  </div>
+  <div class="contract" style="max-width:580px;margin:0 auto">
+    <div class="ct-head">
+      <h3>📋 طلب عرض سعر — مطور ويب متخصص</h3>
+      <span class="ct-seal">وثيقة رسمية</span>
+    </div>
+    <div class="ct-body">
+      <div class="ct-row"><span class="ct-lbl">سعر المشروع</span><span class="ct-val gold">1,200 ريال سعودي</span></div>
+      <div class="ct-row"><span class="ct-lbl">الاستضافة</span><span class="ct-val">مجانية — مشمولة في السعر</span></div>
+      <div class="ct-row"><span class="ct-lbl">قاعدة البيانات</span><span class="ct-val">500MB مجانية</span></div>
+      <div class="ct-row"><span class="ct-lbl">الدومين</span><span class="ct-val">رسوماشتراك محسوب عليك اختياري — من $10 / سنة وما فوقع </span></div>
+      <div class="ct-row"><span class="ct-lbl">الصيانة</span><span class="ct-val">3 أشهر مجانية بعد التسليم</span></div>
+      <div class="ct-row"><span class="ct-lbl">التواصل</span><span class="ct-val">0557771329 (واتساب / اتصال)</span></div>
+
+      <div class="ct-form">
+        <input class="ct-input" type="text" id="cName" placeholder="اسمك الكريم *" required/>
+        <input class="ct-input" type="text" id="cProject" placeholder="وصف مشروعك باختصار *" required/>
+        <input class="ct-input" type="tel" id="cPhone" placeholder="رقم التواصل واتساب *" required/>
+        <input class="ct-input" type="text" id="cNotes" placeholder="ملاحظات إضافية (اختياري)"/>
+        <button class="ct-submit" onclick="submitQuote()">📤 إرسال طلب العرض</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>مطور ويب </span> — جميع الحقوق محفوظة | للتواصل: <span>0557771329</span></p>
+</footer>
+
+<script>
+function submitQuote(){
+  var n=document.getElementById('cName').value.trim();
+  var pr=document.getElementById('cProject').value.trim();
+  var ph=document.getElementById('cPhone').value.trim();
+  var no=document.getElementById('cNotes').value.trim();
+  if(!n||!pr||!ph){alert('يرجى ملء الحقول المطلوبة (*)');return;}
+  var msg='طلب عرض سعر جديد 📋%0A'
+    +'%0Aالاسم: '+encodeURIComponent(n)
+    +'%0Aالمشروع: '+encodeURIComponent(pr)
+    +'%0Aرقم التواصل: '+encodeURIComponent(ph)
+    +(no?'%0Aملاحظات: '+encodeURIComponent(no):'');
+  window.open('https://wa.me/966557771329?text='+msg,'_blank');
+}
+</script>
+</body>
+</html>
